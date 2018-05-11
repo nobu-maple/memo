@@ -72,3 +72,20 @@ CREATE TABLE u9_hist
   INDEX `I_U9ID` (`u9_id`)
 )
 COMMENT '有給履歴';
+
+
+DROP VIEW IF EXISTS u9_view;
+CREATE VIEW u9_view
+    AS
+SELECT `user`.`id`
+     , `user`.`name`
+     , `user`.`email`
+     , sum(`u9`.`u9_time`)
+  FROM `user`     
+  LEFT OUTER JOIN `u9` 
+               ON `user`.`id` = `u9`.`user_id`
+ GROUP BY `user`.`id`
+        , `user`.`name`
+	, `user`.`email`
+;
+
