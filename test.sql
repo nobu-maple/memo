@@ -4,6 +4,8 @@ CREATE TABLE user
   `id`                    INT UNSIGNED      NOT NULL AUTO_INCREMENT        COMMENT '',
   `name`                  VARCHAR(256)      NOT NULL                       COMMENT '氏名',
   `email`                 VARCHAR(256)      NULL                           COMMENT 'メール',
+  `u9_add_month`          SMALLINT UNSIGNED NOT NULL                       COMMENT '有給追加月',
+  `u9_add_time`           REAL              NOT NULL DEFAULT 150.0         COMMENT '有給追加時間 7.5h x 20day',
 
   `Created_at`            TIMESTAMP         NOT NULL  DEFAULT CURRENT_TIMESTAMP,
   `Updated_at`            TIMESTAMP         NULL,
@@ -31,13 +33,11 @@ CREATE TABLE u9
 COMMENT '有給利用可能時間管理';
 
 
-DROP TABLE IF EXISTS u9_user;
-CREATE TABLE u9_user
+DROP TABLE IF EXISTS aipo_relation
+CREATE TABLE aipo_relation
 (
   `user_id`               INT UNSIGNED      NOT NULL                       COMMENT '利用者内部ID',
   `aipo_uid`              VARCHAR(64)       NOT NULL                       COMMENT 'AipoのユーザID',
-  `add_month`             SMALLINT UNSIGNED NOT NULL                       COMMENT '有給追加月',
-  `add_time`              REAL              NOT NULL DEFAULT 150.0         COMMENT '有給追加時間',
 
   `Created_at`            TIMESTAMP         NOT NULL  DEFAULT CURRENT_TIMESTAMP,
   `Updated_at`            TIMESTAMP         NULL,
