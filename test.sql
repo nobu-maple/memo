@@ -1,3 +1,12 @@
+DROP DATABASE IF EXISTS userManage;
+CREATE DATABASE userManage;
+
+DROP USER  appuser1@localhost;
+CREATE USER appuser1@localhost IDENTIFIED WITH mysql_native_password BY 'appuser1_pass';
+GRANT ALL PRIVILEGES on userManage.* to  appuser1@localhost;
+
+USE userManage;
+
 DROP TABLE IF EXISTS user;
 CREATE TABLE user
 (
@@ -33,7 +42,7 @@ CREATE TABLE u9
 COMMENT '有給利用可能時間管理';
 
 
-DROP TABLE IF EXISTS aipo_relation
+DROP TABLE IF EXISTS aipo_relation;
 CREATE TABLE aipo_relation
 (
   `user_id`               INT UNSIGNED      NOT NULL                       COMMENT '利用者内部ID',
@@ -45,7 +54,7 @@ CREATE TABLE aipo_relation
   PRIMARY KEY (`user_id`),
   INDEX `I_AipoID` (`aipo_uid`)
 )
-COMMENT '有給追加時間管理';
+COMMENT 'Aipo連携用';
 
 
 DROP TABLE IF EXISTS u9_hist;
@@ -89,3 +98,6 @@ SELECT `user`.`id`
 	, `user`.`email`
 ;
 
+
+show databases \G;
+show tables \G;
